@@ -33,8 +33,82 @@
                <input type="text" id="whatsapp" placeholder="Whatsapp:" required><br>
                <input type="email" id="email" placeholder="Email:" required><br>
                <input type="text" id="senha" placeholder="Digite a senha" required>
-        <br> <b> Data </b> <br>
-        <input type="date" id="data_Genilson"><br><br>
+        <h3 id="data_hoje">Data de hoje</h3>
+        <!-- INSERT_YOUR_CODE -->
+        <style>
+            #data_hoje {
+                font-size: 1.1em;
+                color: #000000;
+            }
+            .custom-date-container {
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+                margin-bottom: 1em;
+                width: 100%;
+                max-width: 350px;
+            }
+            .custom-date-container input {
+                width: 100%;
+                padding: 10px;
+                font-size: 1em;
+                border: 1px solid #bbb;
+                border-radius: 4px;
+                box-sizing: border-box;
+                text-align: center;
+            }
+            .custom-date-separator {
+                display: flex;
+                align-items: center;
+                font-size: 1.1em;
+                color: #555;
+            }
+            @media (max-width:480px) {
+                .custom-date-container {
+                    max-width: 100%;
+                }
+                .custom-date-container input {
+                    font-size: 1em;
+                    padding: 8px 2px;
+                }
+            }
+        </style>
+        <label for="data_Genilson" style="font-weight: bold;"></label>
+        <div class="custom-date-container">
+            <input type="number" id="dia_Genilson" placeholder="DD" min="1" max="31" required pattern="\d{2}">
+            <span class="custom-date-separator">/</span>
+            <input type="number" id="mes_Genilson" placeholder="MM" min="1" max="12" required pattern="\d{2}">
+            <span class="custom-date-separator">/</span>
+            <input type="number" id="ano_Genilson" placeholder="AAAA" min="1900" max="2100" required pattern="\d{4}">
+        </div>
+        <input type="hidden" id="data_Genilson" name="data_Genilson">
+
+        <script>
+        // Ao mudar qualquer campo, atualiza #data_Genilson no formato dd/mm/aaaa
+        function pad2(n) { return n.toString().padStart(2, '0'); }
+        function updateDataGenilson() {
+            const d = document.getElementById('dia_Genilson').value;
+            const m = document.getElementById('mes_Genilson').value;
+            const a = document.getElementById('ano_Genilson').value;
+            if (d.length > 0 && m.length > 0 && a.length === 4) {
+                document.getElementById('data_Genilson').value = pad2(d) + '/' + pad2(m) + '/' + a;
+            } else {
+                document.getElementById('data_Genilson').value = '';
+            }
+        }
+        document.getElementById('dia_Genilson').addEventListener('input', updateDataGenilson);
+        document.getElementById('mes_Genilson').addEventListener('input', updateDataGenilson);
+        document.getElementById('ano_Genilson').addEventListener('input', updateDataGenilson);
+
+        // Define o valor inicial para data de hoje (ajuda no mobile)
+        window.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            document.getElementById('dia_Genilson').value = pad2(today.getDate());
+            document.getElementById('mes_Genilson').value = pad2(today.getMonth() + 1);
+            document.getElementById('ano_Genilson').value = today.getFullYear();
+            updateDataGenilson();
+        });
+        </script>
         <input type="submit" value="Enviar" id="submit">
     </form>
 </body>
