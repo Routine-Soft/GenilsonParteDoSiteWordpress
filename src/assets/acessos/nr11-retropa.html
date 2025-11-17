@@ -116,11 +116,12 @@
         const enviarDados = async () => {
             try {
                 const curso = document.title;
-                const response = await axios.post('https://app.cestsegtrabalho.com.br/dobrascutaneas/criar', { 
-                    subescapular: name.value, 
-                    peitoral: email.value, 
-                    triciptal: whatsapp.value, 
-                    abdominal: curso 
+                const response = await axios.post('https://api.comunhaorara.com/historicoprova/criar', { 
+                        tituloProva: curso,
+                        name: name.value,
+                        email: email.value,
+                        whatsapp: whatsapp.value,
+                        cpf: cpf.value
                 });
                 console.log('Prova iniciada com sucesso');
                 return true;
