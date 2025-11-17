@@ -1,243 +1,143 @@
-<!--Formulário de prova do Genilson-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> PROVA NR 6 - EPI</title>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <title>PROVA NR 6 - EPI</title>
+
+<!-- INSERT_YOUR_CODE -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body>
-    <img src="https://cestsegtrabalho.com.br/wp-content/uploads/2022/09/logo-e1663851774609.png" width="40%">
-    <h1>NR 6 - EPI</h1>
-    <h3><b>Preencha os dados abaixo e faça a prova <br>
-        Nota mínima 80% <br>
-        Após aprovação já está registrado</h3><br>
-<script>
-                function validarSenha() {
-                    var senha = document.getElementById("senha").value;
-                    if (senha !== '333') {
-                        alert("Senha incorreta! Tente novamente.");
-                        return false; // Impede o envio do formulário
-                    }
-                    return true; // Permite o envio se a senha estiver correta
-                }
-                </script>
-               <form id="submit" action="#" name="form-contact" onsubmit="return validarSenha()">
-               <input type="text" id="name" placeholder="Nome completo:" required><br>
-               <input type="text" id="cpf" placeholder="CPF:" required><br>
-               <input type="text" id="nome_empresa" placeholder="Nome da empresa: (Opcional)"><br>
-               <input type="text" id="whatsapp" placeholder="Whatsapp:" required><br>
-               <input type="email" id="email" placeholder="Email:" required><br>
-               <input type="text" id="senha" placeholder="Digite a senha" required>
-        <h3 id="data_hoje">Data de hoje</h3>
-               <!-- INSERT_YOUR_CODE -->
-               <style>
-                   #data_hoje {
-                       font-size: 1.1em;
-                       color: #000000;
-                   }
-                   .custom-date-container {
-                       display: flex;
-                       flex-direction: row;
-                       gap: 4px;
-                       margin-bottom: 1em;
-                       width: 100%;
-                       max-width: 350px;
-                   }
-                   .custom-date-container input {
-                       width: 100%;
-                       padding: 10px;
-                       font-size: 1em;
-                       border: 1px solid #bbb;
-                       border-radius: 4px;
-                       box-sizing: border-box;
-                       text-align: center;
-                   }
-                   .custom-date-separator {
-                       display: flex;
-                       align-items: center;
-                       font-size: 1.1em;
-                       color: #555;
-                   }
-                   @media (max-width:480px) {
-                       .custom-date-container {
-                           max-width: 100%;
-                       }
-                       .custom-date-container input {
-                           font-size: 1em;
-                           padding: 8px 2px;
-                       }
-                   }
-               </style>
-               <label for="data_Genilson" style="font-weight: bold;"></label>
-               <div class="custom-date-container">
-                   <input type="number" id="dia_Genilson" placeholder="DD" min="1" max="31" required pattern="\d{2}">
-                   <span class="custom-date-separator">/</span>
-                   <input type="number" id="mes_Genilson" placeholder="MM" min="1" max="12" required pattern="\d{2}">
-                   <span class="custom-date-separator">/</span>
-                   <input type="number" id="ano_Genilson" placeholder="AAAA" min="1900" max="2100" required pattern="\d{4}">
-               </div>
-               <input type="hidden" id="data_Genilson" name="data_Genilson">
-       
-               <script>
-               // Ao mudar qualquer campo, atualiza #data_Genilson no formato dd/mm/aaaa
-               function pad2(n) { return n.toString().padStart(2, '0'); }
-               function updateDataGenilson() {
-                   const d = document.getElementById('dia_Genilson').value;
-                   const m = document.getElementById('mes_Genilson').value;
-                   const a = document.getElementById('ano_Genilson').value;
-                   if (d.length > 0 && m.length > 0 && a.length === 4) {
-                       document.getElementById('data_Genilson').value = pad2(d) + '/' + pad2(m) + '/' + a;
-                   } else {
-                       document.getElementById('data_Genilson').value = '';
-                   }
-               }
-               document.getElementById('dia_Genilson').addEventListener('input', updateDataGenilson);
-               document.getElementById('mes_Genilson').addEventListener('input', updateDataGenilson);
-               document.getElementById('ano_Genilson').addEventListener('input', updateDataGenilson);
-       
-               // Define o valor inicial para data de hoje (ajuda no mobile)
-               window.addEventListener('DOMContentLoaded', function() {
-                   const today = new Date();
-                   document.getElementById('dia_Genilson').value = pad2(today.getDate());
-                   document.getElementById('mes_Genilson').value = pad2(today.getMonth() + 1);
-                   document.getElementById('ano_Genilson').value = today.getFullYear();
-                   updateDataGenilson();
-               });
-               </script>
-        <input type="submit" value="Enviar" id="submit">
-    </form>
-    <script src="./index.js"></script>
+<body class="flex flex-col items-center justify-center min-h-screen bg-white">
+    <div class="flex flex-col items-center w-full max-w-md space-y-4 p-4">
+        <img src="https://cestsegtrabalho.com.br/wp-content/uploads/2022/09/logo-e1663851774609.png" width="40%">
+        <h1 class="text-3xl font-bold text-center">NR 6 - EPI</h1>
+        <h2 class="text-xl font-bold text-center">Preencha os dados abaixo e faça a prova <br> Nota mínima 80% <br> Após aprovação já está registrado</h2>
+
+        <form class="flex flex-col gap-3 w-full"
+         action="#" name="form-contact" id="form-contact">
+            <input type="text" placeholder="Nome completo" class="border rounded p-2 w-full" id="name" required> 
+            <input type="text" placeholder="CPF" class="border rounded p-2 w-full" id="cpf" required>   
+            <input type="text" placeholder="Whatsapp" class="border rounded p-2 w-full" id="whatsapp" required>
+            <input type="email" placeholder="Email" class="border rounded p-2 w-full" id="email" required>
+            <input type="text" placeholder="Nome da empresa (opcional)" class="border rounded p-2 w-full" id="nome_empresa">
+            <input type="text" placeholder="Digite a Senha" class="border rounded p-2 w-full" id="senha" required pattern="\d*" inputmode="numeric" autocomplete="off" oninput="this.value=this.value.replace(/[^\d]/g,'')">
+                        <h2 class="text-1xl font-bold text-center">Data de hoje</h2>
+            <div class="flex flex-row gap-2 items-center justify-center w-full">
+                <input type="number" id="dia_Genilson" placeholder="DD" min="1" max="31" required pattern="[0-9]{2}" class="border rounded p-2 text-center" style="width: 80px;">
+                <span class="text-xl font-bold">/</span>
+                <input type="number" id="mes_Genilson" placeholder="MM" min="1" max="12" required pattern="[0-9]{2}" class="border rounded p-2 text-center" style="width: 80px;">
+                <span class="text-xl font-bold">/</span>
+                <input type="number" id="ano_Genilson" placeholder="AAAA" min="1900" max="2100" required pattern="[0-9]{4}" class="border rounded p-2 text-center" style="width: 100px;">
+            </div>
+            <input type="hidden" id="data_Genilson" name="data_Genilson">
+            <input type="submit" value="Fazer Prova" class="bg-black text-white font-bold rounded p-2 cursor-pointer w-full" id="submit">
+        </form>
+
+    </div>
 </body>
-</html>
-
 <script>
-//LocalStorage
-function setLocalStorage() {
-    localStorage.setItem("name", name.value)
-    localStorage.setItem("cpf", cpf.value)
-}
-
-//Cria variáveis que recebem os valores dos inputs
-const name = document.getElementById('name');
-const whatsapp = document.getElementById('whatsapp');
-const email = document.getElementById('email');
-const nome_empresa = document.getElementById('nome_empresa');
-const cpf = document.getElementById('cpf');
-const datadehoje = document.getElementById('data');
-const submit = document.getElementById('submit');
-const dataGenilson = document.getElementById('data_Genilson');
-
-//Pega dia e hora e coloca na variável dataAtual
-const data = new Date()
-const dia = String(data.getDate()).padStart(2, '0') //trasforma 1 em 01
-const mes = String(data.getMonth() + 1).padStart(2, '0') //trasforma 1 em 01
-const ano = data.getFullYear() // 2023
-const hora = String(data.getHours()).padStart(2, '0') //trasforma 1 em 01
-const minuto = String(data.getMinutes()).padStart(2, '0') //trasforma 1 em 01
-const segundo = String(data.getSeconds()).padStart(2, '0') //trasforma 1 em 01
-const dataAtual = `Aluno concluiu a prova em ${dia}/${mes}/${ano} às ${hora}:${minuto}:${segundo}`
-
-//corpo do email com tudo que será enviado para o Email
-submit.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    if (!validarSenha()) {
-            return; // Se a senha estiver errada, interrompe tudo aqui
-            }
-    let ebody = `
-    <div><img src="https://cestsegtrabalho.com.br/wp-content/uploads/2022/09/logo-e1663851774609.png" width="100%"></div>
-    <br><br>
-    <h3>O aluno ${name.value} concluiu a prova NR 6 - EPI conforme treinamento com nota 10</h3>
-    <br><br>
-    <h3 style="margin: 0%;">Nome do aluno:</h3>${name.value}
-    <br><br>
-    <h3>Nome do curso: NR 6 - EPI</h3>
-    <h3 style="margin: 0%;">Whatsapp do aluno:</h3>${whatsapp.value}
-    <br><br>
-    <h3 style="margin: 0%;">Email do aluno: </h3>${email.value}
-    <br><br>
-    <h3 style="margin: 0%;">CPF do aluno: </h3>${cpf.value}
-    <br><br>
-    <h3 style="margin: 0%;">Nome da Empresa (Opcional): </h3>${nome_empresa.value}
-    <br><br>
-    
-    <br><br>
-    <h3 style="font-weight: bold;">Data: </h3>${dataGenilson.value}
-    `;
-
-    Email.send({
-        SecureToken : "58bc9bda-20b7-472d-9522-6edc923b7f69", //add your token here
-        To : 'cestsegtrabalho@gmail.com', //pode colocar email.value e será enviado pro email ou colocar o email digitado mas ficará fixo
-        From : "cestsegtrabalho@gmail.com", //email que enviará a mensagem para o usuário
-        Subject : "O aluno concluiu a prova",
-        Body : ebody
-    }).then(
-        window.open('/src/provas/nr6-epi.html', '_self'), setLocalStorage()  
-    );
-});
-</script>
-
-<!--COMEÇO DO CSS-->
-<style type="text/css">
-    input {
-        align-content: center;
-        align-items: center;
-        width: 30%;
+    // Função para formatar número com zero à esquerda
+    function pad2(n) { 
+        return n.toString().padStart(2, '0'); 
     }
 
-body {
-        align-items: center;
-        text-align: center;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 19px;
-        border: 1px solid #616161;
-        max-width: 400px;       /* Limita a largura máxima */
-        width: 90%;             /* Ocupa até 90% da tela menor */
-        margin: 0 auto;
-        border-radius: 8px;
-        box-sizing: border-box; /* Evita que padding ultrapasse a largura */
-    }
-
-
-    input{
-        padding: 10px;
-        border: 1px solid #616161; /* largura, estilo, cor */
-        width: 90%; /* ou qualquer valor que preferir */
-        border-radius: 8px; /* opcional: deixa a borda arredondada */
-        margin: -2px 0;
-        font-size: large;
-    }
-
-    input[type="submit"] {
-        background-color: #000;
-        color: #fff;               /* define a cor do texto */
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;         /* opcional: deixa o texto mais visível */
-    }
-
-    #submit {
-        color: #fff; /* muda a cor do texto do botão */
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    @media screen and (max-width: 700px){
-        input {
-            width: 90%;
+    // Função para atualizar o campo hidden com a data formatada
+    function updateDataGenilson() {
+        const d = document.getElementById('dia_Genilson').value;
+        const m = document.getElementById('mes_Genilson').value;
+        const a = document.getElementById('ano_Genilson').value;
+        if (d.length > 0 && m.length > 0 && a.length === 4) {
+            document.getElementById('data_Genilson').value = pad2(d) + '/' + pad2(m) + '/' + a;
+        } else {
+            document.getElementById('data_Genilson').value = '';
         }
     }
-</style>
+
+    // Preenche automaticamente com a data de hoje ao carregar a página
+    window.addEventListener('DOMContentLoaded', function() {
+        const today = new Date();
+        document.getElementById('dia_Genilson').value = pad2(today.getDate());
+        document.getElementById('mes_Genilson').value = pad2(today.getMonth() + 1);
+        document.getElementById('ano_Genilson').value = today.getFullYear();
+        updateDataGenilson();
+        
+        // Adiciona event listeners para atualizar quando os campos mudarem
+        document.getElementById('dia_Genilson').addEventListener('input', updateDataGenilson);
+        document.getElementById('mes_Genilson').addEventListener('input', updateDataGenilson);
+        document.getElementById('ano_Genilson').addEventListener('input', updateDataGenilson);
+    });
+   
+    function validarSenha() {
+        const senha = document.getElementById("senha").value.trim();
+        
+        // Não aceita letras, caracteres especiais ou espaço. Apenas números.
+        if (!/^\d+$/.test(senha)) {
+            alert("A senha deve conter apenas números, sem espaços ou caracteres especiais.");
+            return false;
+        }
+
+        if (senha !== '333') {
+            alert("Senha incorreta! Tente novamente.");
+            return false;
+        }
+        return true;
+    }
+
+    // Adiciona event listener no formulário
+    document.getElementById('form-contact').addEventListener('submit', function(e) {
+        e.preventDefault(); // Previne o envio padrão do formulário
+        
+        // Valida a senha
+        if (!validarSenha()) {
+            return; // Se a senha estiver errada, interrompe aqui
+        }
+
+        // Se passou na validação, processa o envio
+        const name = document.getElementById('name');
+        const whatsapp = document.getElementById('whatsapp');
+        const email = document.getElementById('email');
+        const nome_empresa = document.getElementById('nome_empresa');
+        const cpf = document.getElementById('cpf');
+        const dataGenilson = document.getElementById('data_Genilson');
+
+        // A data já está formatada no campo hidden como dd/mm/aaaa
+        const dataFormatada = dataGenilson.value || '';
+
+        // Função para salvar no localStorage
+        function setLocalStorage() {
+            localStorage.setItem("name", name.value);
+            localStorage.setItem("cpf", cpf.value);
+        }
+
+        // Função para enviar dados para API
+        const enviarDados = async () => {
+            try {
+                const curso = document.title;
+                const response = await axios.post('https://app.cestsegtrabalho.com.br/dobrascutaneas/criar', { 
+                    subescapular: name.value, 
+                    peitoral: email.value, 
+                    triciptal: whatsapp.value, 
+                    abdominal: curso 
+                });
+                console.log('Prova iniciada com sucesso');
+                return true;
+            } catch (error) {
+                console.error('Erro ao iniciar prova: ', error);
+                return false;
+            }
+        };
+
+        // Processa o envio sem email
+        setLocalStorage();
+        enviarDados().then(() => {
+            alert("Prova iniciada com sucesso!");
+            window.location.href = "/src/provas/nr6-epi.html";
+        }).catch(() => {
+            alert("Erro ao iniciar prova. Tente novamente.");
+        });
+    });
+</script>
+</html>

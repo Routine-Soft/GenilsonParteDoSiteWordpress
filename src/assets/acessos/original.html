@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROVA RAC 05</title>
+    <title>PROVA BOBCAT - Mini pá carregadeira</title>
 
 <!-- INSERT_YOUR_CODE -->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 <body class="flex flex-col items-center justify-center min-h-screen bg-white">
     <div class="flex flex-col items-center w-full max-w-md space-y-4 p-4">
         <img src="https://cestsegtrabalho.com.br/wp-content/uploads/2022/09/logo-e1663851774609.png" width="40%">
-        <h1 class="text-3xl font-bold text-center">RAC 05</h1>
+        <h1 class="text-3xl font-bold text-center">PROVA BOBCAT - Mini pá carregadeira</h1>
         <h2 class="text-xl font-bold text-center">Preencha os dados abaixo e faça a prova <br> Nota mínima 80% <br> Após aprovação já está registrado</h2>
 
         <form class="flex flex-col gap-3 w-full"
@@ -24,13 +24,13 @@
             <input type="email" placeholder="Email" class="border rounded p-2 w-full" id="email" required>
             <input type="text" placeholder="Nome da empresa (opcional)" class="border rounded p-2 w-full" id="nome_empresa">
             <input type="text" placeholder="Digite a Senha" class="border rounded p-2 w-full" id="senha" required pattern="\d*" inputmode="numeric" autocomplete="off" oninput="this.value=this.value.replace(/[^\d]/g,'')">
-                        <h2 class="text-1xl font-bold text-center">Data de hoje</h2>
+            <h2 class="text-1xl font-bold text-center">Data de hoje</h2>
             <div class="flex flex-row gap-2 items-center justify-center w-full">
-                <input type="number" id="dia_Genilson" placeholder="DD" min="1" max="31" required pattern="[0-9]{2}" class="border rounded p-2 text-center" style="width: 80px;">
+                <input type="number" id="dia_Genilson" placeholder="DD" min="1" max="31" required pattern="\d{2}" class="border rounded p-2 text-center" style="width: 80px;">
                 <span class="text-xl font-bold">/</span>
-                <input type="number" id="mes_Genilson" placeholder="MM" min="1" max="12" required pattern="[0-9]{2}" class="border rounded p-2 text-center" style="width: 80px;">
+                <input type="number" id="mes_Genilson" placeholder="MM" min="1" max="12" required pattern="\d{2}" class="border rounded p-2 text-center" style="width: 80px;">
                 <span class="text-xl font-bold">/</span>
-                <input type="number" id="ano_Genilson" placeholder="AAAA" min="1900" max="2100" required pattern="[0-9]{4}" class="border rounded p-2 text-center" style="width: 100px;">
+                <input type="number" id="ano_Genilson" placeholder="AAAA" min="1900" max="2100" required pattern="\d{4}" class="border rounded p-2 text-center" style="width: 100px;">
             </div>
             <input type="hidden" id="data_Genilson" name="data_Genilson">
             <input type="submit" value="Fazer Prova" class="bg-black text-white font-bold rounded p-2 cursor-pointer w-full" id="submit">
@@ -134,7 +134,7 @@
         setLocalStorage();
         enviarDados().then(() => {
             alert("Prova iniciada com sucesso!");
-            window.location.href = "/src/provas/provas-racs/prova-rac5.html";
+            window.location.href = "/src/provas/bobcat.html";
         }).catch(() => {
             alert("Erro ao iniciar prova. Tente novamente.");
         });
