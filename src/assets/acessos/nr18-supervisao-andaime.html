@@ -116,7 +116,7 @@
         const enviarDados = async () => {
             try {
                 const curso = document.title;
-                const response = await axios.post('https://api.comunhaorara.com/historicoprova/criar', { 
+                const response = await axios.post('https://genilson-next.vercel.app/historicoprova/criar', { 
                         tituloProva: curso,
                         name: name.value,
                         email: email.value,
