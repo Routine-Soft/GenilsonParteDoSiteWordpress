@@ -48,11 +48,26 @@ Esta Norma Regulamentadora NR 17 - Movimentação de carga manual (Ergonomia), v
                <script>
                 function validarSenha() {
                     var senha = document.getElementById("senha").value;
-                    if (senha !== '123') {
-                        alert("Senha incorreta! Tente novamente.");
-                        return false; // Impede o envio do formulário
-                    }
-                    window.location.href = "https://www.cestsegtrabalho.com.br/src/assets/page/modulos/nr17MovCargaManual.html";
+                    // A senha do estudo fica no backend (trocada no painel /desenvolvedor do app)
+                    fetch('https://genilson-next.vercel.app/api/senha-acesso/validar', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ tipo: 'estudo', senha: senha.trim() })
+                    })
+                        .then(function (resposta) {
+                            if (!resposta.ok) throw new Error('Erro ao verificar a senha');
+                            return resposta.json();
+                        })
+                        .then(function (dados) {
+                            if (dados.valida !== true) {
+                                alert("Senha incorreta! Tente novamente.");
+                                return;
+                            }
+                            window.location.href = "https://www.cestsegtrabalho.com.br/src/assets/page/modulos/nr17MovCargaManual.html";
+                        })
+                        .catch(function () {
+                            alert("Não foi possível verificar a senha. Confira sua internet e tente de novo.");
+                        });
                     return false; // Permite o envio se a senha estiver correta // Permite o envio se a senha estiver correta
                 }
                 </script>

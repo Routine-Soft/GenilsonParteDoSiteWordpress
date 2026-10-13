@@ -70,7 +70,7 @@
         document.getElementById('ano_Genilson').addEventListener('input', updateDataGenilson);
     });
    
-    function validarSenha() {
+    async function validarSenha() {
         const senha = document.getElementById("senha").value.trim();
         
         // Não aceita letras, caracteres especiais ou espaço. Apenas números.
@@ -79,7 +79,22 @@
             return false;
         }
 
-        if (senha !== '456') {
+        // A senha da prova fica no backend (trocada no painel /desenvolvedor do app)
+        let senhaValida = false;
+        try {
+            const resposta = await fetch('https://genilson-next.vercel.app/api/senha-acesso/validar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tipo: 'prova', senha: senha })
+            });
+            if (!resposta.ok) throw new Error('Erro ao verificar a senha');
+            senhaValida = (await resposta.json()).valida === true;
+        } catch (error) {
+            alert("Não foi possível verificar a senha. Confira sua internet e tente de novo.");
+            return false;
+        }
+
+        if (!senhaValida) {
             alert("Senha incorreta! Tente novamente.");
             return false;
         }
@@ -87,11 +102,11 @@
     }
 
     // Adiciona event listener no formulário
-    document.getElementById('form-contact').addEventListener('submit', function(e) {
+    document.getElementById('form-contact').addEventListener('submit', async function(e) {
         e.preventDefault(); // Previne o envio padrão do formulário
         
         // Valida a senha
-        if (!validarSenha()) {
+        if (!(await validarSenha())) {
             return; // Se a senha estiver errada, interrompe aqui
         }
 
@@ -116,7 +131,7 @@
         const enviarDados = async () => {
             try {
                 const curso = document.title;
-                const response = await axios.post('https://genilson-next.vercel.app/historicoprova/criar', { 
+                const response = await axios.post('https://genilson-next.vercel.app/api/historicoprova/criar', { 
                         tituloProva: curso,
                         name: name.value,
                         email: email.value,
