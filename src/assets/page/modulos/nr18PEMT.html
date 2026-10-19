@@ -417,9 +417,16 @@ O operador deve ser capacitado de acordo com o item 18.22.1 da NR-18 e ser trein
             text-align: center;
             margin-bottom: 20px;
         }
+        /* Vídeo ocupa a largura disponível (até 640px) mantendo o formato 16:9.
+           "height: auto" em iframe vira 150px, por isso o vídeo aparecia cortado. */
         iframe {
-            max-width: 100%;
+            display: block;
+            width: 100%;
+            max-width: 640px;
             height: auto;
+            aspect-ratio: 16 / 9;
+            margin: 0 auto;
+            border: 0;
         }
         #buttons-container {
             margin: 20px 0;
