@@ -1382,13 +1382,16 @@ Virulência: É o grau de patogenicidade de um agente infeccioso
             margin-bottom: 20px;
         }
         /* Vídeo ocupa a largura disponível (até 640px) mantendo o formato 16:9.
-           "height: auto" em iframe vira 150px, por isso o vídeo aparecia cortado. */
+           "height: auto" em iframe vira 150px, por isso o vídeo aparecia cortado.
+           O player do Google Drive precisa de pelo menos 300px de altura; com menos,
+           a parte de baixo some no celular. */
         iframe {
             display: block;
             width: 100%;
             max-width: 640px;
             height: auto;
             aspect-ratio: 16 / 9;
+            min-height: 300px;
             margin: 0 auto;
             border: 0;
         }
